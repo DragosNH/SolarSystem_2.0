@@ -2,13 +2,14 @@ body {
     margin: 0;
     height: 100vh;
     width: 100vw;
+    font-family: "Audiowide", sans-serif;
 }
 
 #threejs-background {
     position: static;
     top: 0;
     left: 0;
-    z-index: 5;
+    z-index: -5;
     width: 100vw;
     height: 100vh;
     pointer-events: none;
@@ -16,4 +17,39 @@ body {
     box-shadow: 0 10px 10px 1px var(--darker-yellowish);
     padding: 0;
     margin: 0;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    background-color: aliceblue;
+    opacity: 0.5;
+
+    & .footer-conatiner{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        & p{
+            margin: 6px;
+            color: darkblue;
+        }
+
+        & a{
+            color: darkblue;
+            margin: 0 1px 0 1px;
+        }
+
+        & a:hover{
+            color: blue;
+        }
+
+        & .logo{
+            width: 30px;
+        }
+    }
+
+    
 }
