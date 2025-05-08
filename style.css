@@ -1,6 +1,6 @@
-:root{
+:root {
     --primary-blue: #578FCA;
-    --footer-bk : aliceblue;
+    --footer-bk: aliceblue;
     --footer-txt: darkblue;
     --footer-link-hover: blue;
     --menu-btn: #6482AD;
@@ -27,7 +27,7 @@ body {
     margin: 0;
 }
 
-.sidebar{
+.sidebar {
     background-color: var(--primary-blue);
     width: 70px;
     height: 100vh;
@@ -36,8 +36,9 @@ body {
     top: 0;
     z-index: 10;
     opacity: 0.8;
+    transition: width 0.5s ease;
 
-    & .menu-btn{
+    & .menu-btn {
         margin: 20px 5px;
         padding: 3px;
         background-color: var(--primary-blue);
@@ -45,10 +46,42 @@ body {
         color: var(--footer-bk);
         font-size: 16px;
         font-family: "Audiowide", sans-serif;
+
+    }
+
+    & .content {
+        margin: 20px 50px;
+
+        & .planet-btn {
+            background-color: var(--primary-blue);
+            border: 2px solid var(--footer-bk);
+            color: var(--footer-bk);
+            font-size: 16px;
+            font-family: "Audiowide", sans-serif;
+            width: 150px;
+        }
+    }
+
+    & .hiden {
+        display: none;
     }
 }
 
-.footer{
+.infoPage{
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    width: 500px;
+    height: 1000;
+    background-color: var(--primary-blue);
+    z-index: 15;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
     position: absolute;
     bottom: 0;
     width: 100vw;
@@ -56,30 +89,30 @@ body {
     opacity: 0.5;
     z-index: 5;
 
-    & .footer-conatiner{
+    & .footer-conatiner {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
 
-        & p{
+        & p {
             margin: 6px;
             color: var(--footer-txt);
         }
 
-        & a{
+        & a {
             color: var(--footer-txt);
             margin: 0 1px 0 1px;
         }
 
-        & a:hover{
+        & a:hover {
             color: var(--footer-link-hover);
         }
 
-        & .logo{
+        & .logo {
             width: 30px;
         }
     }
 
-    
+
 }
