@@ -11,5 +11,9 @@ menuBtn.addEventListener("click", function(){
     }
 });
 
-
-;
+document.addEventListener("click", function(e){
+    if(!sideMenu.contains(e.target)){
+        sideMenu.style.width = "70px";
+        menuBtn.innerText = "Open";
+    }
+})
