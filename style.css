@@ -1,3 +1,10 @@
+:root{
+    --primary-blue: #578FCA;
+    --footer-bk : aliceblue;
+    --footer-txt: darkblue;
+    --footer-link-hover: blue;
+}
+
 body {
     margin: 0;
     height: 100vh;
@@ -19,11 +26,15 @@ body {
     margin: 0;
 }
 
+.sidebar{
+    background-color: var(--primary-blue);
+}
+
 .footer{
     position: absolute;
     bottom: 0;
     width: 100vw;
-    background-color: aliceblue;
+    background-color: var(--footer-bk);
     opacity: 0.5;
 
     & .footer-conatiner{
@@ -34,16 +45,16 @@ body {
 
         & p{
             margin: 6px;
-            color: darkblue;
+            color: var(--footer-txt);
         }
 
         & a{
-            color: darkblue;
+            color: var(--footer-txt);
             margin: 0 1px 0 1px;
         }
 
         & a:hover{
-            color: blue;
+            color: var(--footer-link-hover);
         }
 
         & .logo{
