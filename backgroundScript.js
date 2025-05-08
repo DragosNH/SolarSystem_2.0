@@ -204,7 +204,7 @@ window.addEventListener('resize', () => {
 });
 
 
-// ------ Aniomations ------
+// ------ Animations ------
 function animate() {
 
     sun.rotation.y += 0.01;
