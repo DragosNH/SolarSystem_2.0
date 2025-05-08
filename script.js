@@ -73,6 +73,7 @@ sunBtn.addEventListener("click", function () {
     infoPage.classList = "infoPage";
 
     let infoTitle = document.createElement("h2");
+    infoTitle.classList = "info-title";
     infoTitle.innerText = "The Sun";
 
     infoPage.appendChild(infoTitle);

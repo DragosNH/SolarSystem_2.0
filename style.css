@@ -80,6 +80,14 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    & .info-title{
+        margin-bottom: 0;
+    }
+
+    & canvas{
+        opacity: 1;
+    }
 }
 
 .footer {
