@@ -3,6 +3,7 @@
     --footer-bk : aliceblue;
     --footer-txt: darkblue;
     --footer-link-hover: blue;
+    --menu-btn: #6482AD;
 }
 
 body {
@@ -28,6 +29,23 @@ body {
 
 .sidebar{
     background-color: var(--primary-blue);
+    width: 70px;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    opacity: 0.8;
+
+    & .menu-btn{
+        margin: 20px 5px;
+        padding: 3px;
+        background-color: var(--primary-blue);
+        border: 2px solid var(--footer-bk);
+        color: var(--footer-bk);
+        font-size: 16px;
+        font-family: "Audiowide", sans-serif;
+    }
 }
 
 .footer{
@@ -36,6 +54,7 @@ body {
     width: 100vw;
     background-color: var(--footer-bk);
     opacity: 0.5;
+    z-index: 5;
 
     & .footer-conatiner{
         display: flex;
