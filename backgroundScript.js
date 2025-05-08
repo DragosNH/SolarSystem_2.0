@@ -6,7 +6,9 @@ import * as THREE from 'three';
 
 // ==============================================================================
 
+const container = document.getElementById('threejs-background');
 const loader = new THREE.TextureLoader();
+
 
 // ****** Scene ******
 const scene = new THREE.Scene();
@@ -14,12 +16,12 @@ const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerH
 camera.position.set(0, 0, 35);
 scene.background = loader.load('textures/stars.jpg');
 
+
 // ****** Renderer ******
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-document.body.appendChild(renderer.domElement);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
 
 // *** Sun light ***
 const sunLight = new THREE.PointLight(0xffffff, 30, 1000);
@@ -192,8 +194,8 @@ scene.add(plutoPivot);
 
 // Made the scene responsive 
 window.addEventListener('resize', () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
     camera.aspect = width / height;
     camera.updateProjectionMatrix();

@@ -1,3 +1,19 @@
 body {
     margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+#threejs-background {
+    position: static;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    box-shadow: 0 10px 10px 1px var(--darker-yellowish);
+    padding: 0;
+    margin: 0;
 }
