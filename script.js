@@ -35,7 +35,7 @@ document.addEventListener("click", function (e) {
 });
 
 
-function showPlanet({ name, texturePath, radius, container }) {
+function showPlanet({ name, texturePath, radius, container, satelite }) {
     const canvas = document.createElement("canvas");
     container.appendChild(canvas);
 
@@ -63,8 +63,28 @@ function showPlanet({ name, texturePath, radius, container }) {
     planet.name = name;
     scene.add(planet);
 
+    // -- Satelite --
+    if (satelite) {
+        const satelliteGeo = new THREE.SphereGeometry(radius * 0.3, 32, 32);
+        const satelliteMat = new THREE.MeshBasicMaterial({ map: loader.load(satelite.texturePath) });
+        const satellite = new THREE.Mesh(satelliteGeo, satelliteMat);
+        satellite.position.x = radius + 1; 
+
+        const planetPivot = new THREE.Object3D();
+        planetPivot.add(satellite);
+        scene.add(planetPivot);
+
+        // Inside animate:
+        planetPivot.rotation.y += 0.02;
+    }
+
     const animate = () => {
-        planet.rotation.y += 0.01;
+
+        if(planet.name == "venus"){
+            planet.rotation.y -= 0.01;
+        } else {
+            planet.rotation.y += 0.01;
+        }
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
     };
@@ -74,7 +94,7 @@ function showPlanet({ name, texturePath, radius, container }) {
 
 
 sunBtn.addEventListener("click", function () {
-     if (document.querySelector(".infoPage")) return;
+    if (document.querySelector(".infoPage")) return;
 
     const infoPage = document.createElement("div");
     infoPage.classList = "infoPage";
