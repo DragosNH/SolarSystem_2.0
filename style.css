@@ -5,6 +5,7 @@
     --footer-txt: darkblue;
     --footer-link-hover: blue;
     --menu-btn: #6482AD;
+    --close-color: #a63a13
 }
 
 body {
@@ -60,6 +61,7 @@ body {
             font-size: 16px;
             font-family: "Audiowide", sans-serif;
             width: 150px;
+            margin: 10px;
         }
     }
 
@@ -82,6 +84,15 @@ body {
     flex-direction: column;
     border: 10px solid var(--secondary-blue);
 
+    & .close-card{
+        color: var(--close-color);
+        background-color: var(--primary-blue);
+        border: 3px solid var(--secondary-blue);
+        margin: 10px;
+        font-size: 20px;
+        font-family: "Audiowide", sans-serif;
+
+    }
 
     & .about-planet {
         width: 430px;

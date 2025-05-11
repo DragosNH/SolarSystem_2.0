@@ -5,10 +5,13 @@ const menuBtn = document.querySelector(".menu-btn");
 const content = document.querySelector(".content");
 // -- Planets buttons --
 const sunBtn = document.querySelector(".sunBtn");
+const mercuryBtn = document.querySelector(".mercuryBtn");
 
+
+// Planest infos 
 let planetsInfos = [
     "The Sun's gravity holds the solar system together, keeping everything – from the biggest planets to the smallest particles of debris – in its orbit. The connection and interactions between the Sun and Earth drive the seasons, ocean currents, weather, climate, radiation belts and auroras. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy. The Sun has many names in many cultures. The Latin word for Sun is “sol,” which is the main adjective for all things Sun-related: solar.",
-
+    "Mercury is the smallest planet in our solar system and the nearest to the Sun. Mercury is only slightly larger than Earth's Moon. It's the fastest planet, zipping around the Sun every 88 Earth days. Mercury is named for the swiftest of the ancient Roman gods.",
 ];
 
 menuBtn.addEventListener("click", function () {
@@ -68,7 +71,7 @@ function showPlanet({ name, texturePath, radius, container, satelite }) {
         const satelliteGeo = new THREE.SphereGeometry(radius * 0.3, 32, 32);
         const satelliteMat = new THREE.MeshBasicMaterial({ map: loader.load(satelite.texturePath) });
         const satellite = new THREE.Mesh(satelliteGeo, satelliteMat);
-        satellite.position.x = radius + 1; 
+        satellite.position.x = radius + 1;
 
         const planetPivot = new THREE.Object3D();
         planetPivot.add(satellite);
@@ -80,7 +83,7 @@ function showPlanet({ name, texturePath, radius, container, satelite }) {
 
     const animate = () => {
 
-        if(planet.name == "venus"){
+        if (planet.name == "venus") {
             planet.rotation.y -= 0.01;
         } else {
             planet.rotation.y += 0.01;
@@ -93,11 +96,17 @@ function showPlanet({ name, texturePath, radius, container, satelite }) {
 }
 
 
+// ------------- Planets event listener --------------------
+
 sunBtn.addEventListener("click", function () {
     if (document.querySelector(".infoPage")) return;
 
     const infoPage = document.createElement("div");
     infoPage.classList = "infoPage";
+
+    let closeCardBtn = document.createElement("button");
+    closeCardBtn.classList = "close-card";
+    closeCardBtn.innerText = "Close";
 
     let infoTitle = document.createElement("h2");
     infoTitle.classList = "info-title";
@@ -130,10 +139,65 @@ sunBtn.addEventListener("click", function () {
     infoPage.appendChild(about);
     infoPage.appendChild(funFactTitle);
     infoPage.appendChild(funFact);
+    infoPage.appendChild(closeCardBtn);
+
+    closeCardBtn.addEventListener("click", function () {
+        infoPage.remove();
+    });
+
 
     document.body.appendChild(infoPage);
 
-
-
 });
 
+mercuryBtn.addEventListener("click", function () {
+    if (document.querySelector(".infoPage")) return;
+
+    const infoPage = document.createElement("div");
+    infoPage.classList = "infoPage";
+
+    let closeCardBtn = document.createElement("button");
+    closeCardBtn.classList = "close-card";
+    closeCardBtn.innerText = "Close";
+
+    let infoTitle = document.createElement("h2");
+    infoTitle.classList = "info-title";
+    infoTitle.innerText = "Mercury";
+
+    let about = document.createElement("p");
+    about.classList = "about-planet";
+    about.innerText = planetsInfos[1];
+
+    let funFactTitle = document.createElement("h3");
+    funFactTitle.classList = "fun-fact-title";
+    funFactTitle.innerText = "Fun fact:"
+
+    let funFact = document.createElement("p");
+    funFact.classList = "about-planet";
+    funFact.innerText = "Mercury takes 88 Earth days to orbit the Sun (that’s its year). But it takes about 176 Earth days for Mercury to complete one full rotation on its axis (a day)";
+
+    let aboutTitle = document.createElement("h3");
+    aboutTitle.classList = "info-subtitle";
+    aboutTitle.innerText = "About the Mercury:"
+    infoPage.appendChild(infoTitle);
+    showPlanet({
+        name: "Mercury",
+        texturePath: "textures/mercury.jpg",
+        radius: 5,
+        container: infoPage
+    });
+
+    infoPage.appendChild(aboutTitle);
+    infoPage.appendChild(about);
+    infoPage.appendChild(funFactTitle);
+    infoPage.appendChild(funFact);
+    infoPage.appendChild(closeCardBtn);
+
+    closeCardBtn.addEventListener("click", function () {
+        infoPage.remove();
+    });
+
+
+    document.body.appendChild(infoPage);
+
+});
