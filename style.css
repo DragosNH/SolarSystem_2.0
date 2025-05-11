@@ -1,12 +1,14 @@
 :root {
     --primary-blue: #578FCA;
-    --secondary-blue : #4372a4;
+    --secondary-blue: #4372a4;
     --footer-bk: aliceblue;
     --footer-txt: darkblue;
     --footer-link-hover: blue;
     --menu-btn: #6482AD;
     --close-color: #a63a13
 }
+
+
 
 body {
     margin: 0;
@@ -84,7 +86,7 @@ body {
     flex-direction: column;
     border: 10px solid var(--secondary-blue);
 
-    & .close-card{
+    & .close-card {
         color: var(--close-color);
         background-color: var(--primary-blue);
         border: 3px solid var(--secondary-blue);
@@ -105,7 +107,25 @@ body {
     & canvas {
         opacity: 1;
     }
+
+    & .scroll-section {
+        max-height: 400px;
+        overflow-y: auto;
+        padding-right: 8px;
+        margin-bottom: 1rem;
+    }
+
+    & .scroll-section::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    & .scroll-section::-webkit-scrollbar-thumb {
+        background-color: var(--secondary-blue);
+    }
+
 }
+
+
 
 .footer {
     position: absolute;

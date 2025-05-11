@@ -7,6 +7,7 @@ const content = document.querySelector(".content");
 const sunBtn = document.querySelector(".sunBtn");
 const mercuryBtn = document.querySelector(".mercuryBtn");
 const venusBtn = document.querySelector(".venusBtn");
+const earthBtn = document.querySelector(".earthBtn")
 
 
 // Planest infos 
@@ -14,6 +15,7 @@ let planetsInfos = [
     "The Sun's gravity holds the solar system together, keeping everything – from the biggest planets to the smallest particles of debris – in its orbit. The connection and interactions between the Sun and Earth drive the seasons, ocean currents, weather, climate, radiation belts and auroras. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy. The Sun has many names in many cultures. The Latin word for Sun is “sol,” which is the main adjective for all things Sun-related: solar.",
     "Mercury is the smallest planet in our solar system and the nearest to the Sun. Mercury is only slightly larger than Earth's Moon. It's the fastest planet, zipping around the Sun every 88 Earth days. Mercury is named for the swiftest of the ancient Roman gods.",
     "Venus is the second planet from the Sun, and the sixth largest planet. It’s the hottest planet in our solar system. Venus is a cloud-swaddled planet and our nearest planetary neighbor. It has a surface hot enough to melt lead.",
+    "While Earth is only the fifth largest planet in the solar system, it is the only world in our solar system with liquid water on the surface. Just slightly larger than nearby Venus, Earth is the biggest of the four planets closest to the Sun, all of which are made of rock and metal. Earth is the only planet in the solar system whose English name does not come from Greek or Roman mythology. The name was taken from Old English and Germanic. It simply means \"the ground.\" There are, of course, many names for our planet in the thousands of languages spoken by the people of the third planet from the Sun."
 ];
 
 menuBtn.addEventListener("click", function () {
@@ -45,9 +47,10 @@ function showPlanet({ name, texturePath, radius, container, satelite }) {
     container.appendChild(canvas);
 
     const loader = new THREE.TextureLoader();
-    const width = 150;
+    const width = 450;
     const height = 100;
 
+   
     // -- Scene --
     const scene = new THREE.Scene();
     scene.background = null;
@@ -73,14 +76,22 @@ function showPlanet({ name, texturePath, radius, container, satelite }) {
         const satelliteGeo = new THREE.SphereGeometry(radius * 0.3, 32, 32);
         const satelliteMat = new THREE.MeshBasicMaterial({ map: loader.load(satelite.texturePath) });
         const satellite = new THREE.Mesh(satelliteGeo, satelliteMat);
-        satellite.position.x = radius + 1;
+        satellite.position.x = radius + 3;
 
         const planetPivot = new THREE.Object3D();
         planetPivot.add(satellite);
         scene.add(planetPivot);
 
-        // Inside animate:
-        planetPivot.rotation.y += 0.02;
+
+        const animate = () => {
+            planetPivot.rotation.y += 0.02;
+            satellite.rotation.y += 0.01;
+
+            requestAnimationFrame(animate);
+
+        }
+
+        animate();
     }
 
     const animate = () => {
@@ -246,6 +257,71 @@ venusBtn.addEventListener("click", function () {
     infoPage.appendChild(about);
     infoPage.appendChild(funFactTitle);
     infoPage.appendChild(funFact);
+    infoPage.appendChild(closeCardBtn);
+
+    closeCardBtn.addEventListener("click", function () {
+        infoPage.remove();
+    });
+
+
+    document.body.appendChild(infoPage);
+
+});
+
+
+earthBtn.addEventListener("click", function () {
+    if (document.querySelector(".infoPage")) return;
+
+    const infoPage = document.createElement("div");
+    infoPage.classList = "infoPage";
+
+    let closeCardBtn = document.createElement("button");
+    closeCardBtn.classList = "close-card";
+    closeCardBtn.innerText = "Close";
+
+    let infoTitle = document.createElement("h2");
+    infoTitle.classList = "info-title";
+    infoTitle.innerText = "Earth";
+
+    let about = document.createElement("p");
+    about.classList = "about-planet";
+    about.innerText = planetsInfos[3];
+
+    let funFactTitle = document.createElement("h3");
+    funFactTitle.classList = "fun-fact-title";
+    funFactTitle.innerText = "Fun fact:"
+
+    let funFact = document.createElement("p");
+    funFact.classList = "about-planet";
+    funFact.innerText = "According to some scientific theories, early Earth may have been dominated by purple-hued microbes (like retinal-based organisms) instead of green plants. These microbes used a different light-absorbing pigment than chlorophyll — giving Earth a purplish tint before oxygen-producing organisms took over.";
+
+    let aboutTitle = document.createElement("h3");
+    aboutTitle.classList = "info-subtitle";
+    aboutTitle.innerText = "About the Earth:"
+
+
+
+    infoPage.appendChild(infoTitle);
+    showPlanet({
+        name: "earth",
+        texturePath: "textures/earth.jpg",
+        radius: 5,
+        container: infoPage,
+        satelite: {
+            texturePath: "textures/moon.jpg"
+        }
+    });
+
+    infoPage.appendChild(aboutTitle);
+
+    const scrollSection = document.createElement("div");
+    scrollSection.classList = "scroll-section";
+
+    scrollSection.appendChild(about);
+    scrollSection.appendChild(funFactTitle);
+    scrollSection.appendChild(funFact);
+    
+    infoPage.appendChild(scrollSection);
     infoPage.appendChild(closeCardBtn);
 
     closeCardBtn.addEventListener("click", function () {
