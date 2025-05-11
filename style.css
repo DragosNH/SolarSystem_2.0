@@ -1,5 +1,6 @@
 :root {
     --primary-blue: #578FCA;
+    --secondary-blue : #4372a4;
     --footer-bk: aliceblue;
     --footer-txt: darkblue;
     --footer-link-hover: blue;
@@ -67,25 +68,30 @@ body {
     }
 }
 
-.infoPage{
+.infoPage {
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 40%;
     width: 500px;
-    height: 1000;
+    height: 700px;
     background-color: var(--primary-blue);
     z-index: 15;
     opacity: 0.9;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
+    border: 10px solid var(--secondary-blue);
 
-    & .info-title{
+
+    & .about-planet {
+        width: 430px;
+    }
+
+    & .info-title {
         margin-bottom: 0;
     }
 
-    & canvas{
+    & canvas {
         opacity: 1;
     }
 }

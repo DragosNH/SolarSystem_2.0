@@ -6,6 +6,11 @@ const content = document.querySelector(".content");
 // -- Planets buttons --
 const sunBtn = document.querySelector(".sunBtn");
 
+let planetsInfos = [
+    "The Sun's gravity holds the solar system together, keeping everything – from the biggest planets to the smallest particles of debris – in its orbit. The connection and interactions between the Sun and Earth drive the seasons, ocean currents, weather, climate, radiation belts and auroras. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy. The Sun has many names in many cultures. The Latin word for Sun is “sol,” which is the main adjective for all things Sun-related: solar.",
+
+];
+
 menuBtn.addEventListener("click", function () {
     if (sideMenu.style.width === "250px") {
         sideMenu.style.width = "70px";
@@ -69,6 +74,8 @@ function showPlanet({ name, texturePath, radius, container }) {
 
 
 sunBtn.addEventListener("click", function () {
+     if (document.querySelector(".infoPage")) return;
+
     const infoPage = document.createElement("div");
     infoPage.classList = "infoPage";
 
@@ -76,15 +83,37 @@ sunBtn.addEventListener("click", function () {
     infoTitle.classList = "info-title";
     infoTitle.innerText = "The Sun";
 
+    let about = document.createElement("p");
+    about.classList = "about-planet";
+    about.innerText = planetsInfos[0];
+
+    let funFactTitle = document.createElement("h3");
+    funFactTitle.classList = "fun-fact-title";
+    funFactTitle.innerText = "Fun fact:"
+
+    let funFact = document.createElement("p");
+    funFact.classList = "about-planet";
+    funFact.innerText = "The Sun is so massive that it makes up about 99.86% of the entire mass of our solar system.";
+
+    let aboutTitle = document.createElement("h3");
+    aboutTitle.classList = "info-subtitle";
+    aboutTitle.innerText = "About the sun:"
     infoPage.appendChild(infoTitle);
-
-    document.body.appendChild(infoPage);
-
     showPlanet({
         name: "Sun",
         texturePath: "textures/sun.jpg",
         radius: 5,
         container: infoPage
     });
+
+    infoPage.appendChild(aboutTitle);
+    infoPage.appendChild(about);
+    infoPage.appendChild(funFactTitle);
+    infoPage.appendChild(funFact);
+
+    document.body.appendChild(infoPage);
+
+
+
 });
 
