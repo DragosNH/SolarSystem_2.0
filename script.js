@@ -6,12 +6,14 @@ const content = document.querySelector(".content");
 // -- Planets buttons --
 const sunBtn = document.querySelector(".sunBtn");
 const mercuryBtn = document.querySelector(".mercuryBtn");
+const venusBtn = document.querySelector(".venusBtn");
 
 
 // Planest infos 
 let planetsInfos = [
     "The Sun's gravity holds the solar system together, keeping everything – from the biggest planets to the smallest particles of debris – in its orbit. The connection and interactions between the Sun and Earth drive the seasons, ocean currents, weather, climate, radiation belts and auroras. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy. The Sun has many names in many cultures. The Latin word for Sun is “sol,” which is the main adjective for all things Sun-related: solar.",
     "Mercury is the smallest planet in our solar system and the nearest to the Sun. Mercury is only slightly larger than Earth's Moon. It's the fastest planet, zipping around the Sun every 88 Earth days. Mercury is named for the swiftest of the ancient Roman gods.",
+    "Venus is the second planet from the Sun, and the sixth largest planet. It’s the hottest planet in our solar system. Venus is a cloud-swaddled planet and our nearest planetary neighbor. It has a surface hot enough to melt lead.",
 ];
 
 menuBtn.addEventListener("click", function () {
@@ -183,6 +185,59 @@ mercuryBtn.addEventListener("click", function () {
     showPlanet({
         name: "Mercury",
         texturePath: "textures/mercury.jpg",
+        radius: 5,
+        container: infoPage
+    });
+
+    infoPage.appendChild(aboutTitle);
+    infoPage.appendChild(about);
+    infoPage.appendChild(funFactTitle);
+    infoPage.appendChild(funFact);
+    infoPage.appendChild(closeCardBtn);
+
+    closeCardBtn.addEventListener("click", function () {
+        infoPage.remove();
+    });
+
+
+    document.body.appendChild(infoPage);
+
+});
+
+
+venusBtn.addEventListener("click", function () {
+    if (document.querySelector(".infoPage")) return;
+
+    const infoPage = document.createElement("div");
+    infoPage.classList = "infoPage";
+
+    let closeCardBtn = document.createElement("button");
+    closeCardBtn.classList = "close-card";
+    closeCardBtn.innerText = "Close";
+
+    let infoTitle = document.createElement("h2");
+    infoTitle.classList = "info-title";
+    infoTitle.innerText = "Venus";
+
+    let about = document.createElement("p");
+    about.classList = "about-planet";
+    about.innerText = planetsInfos[2];
+
+    let funFactTitle = document.createElement("h3");
+    funFactTitle.classList = "fun-fact-title";
+    funFactTitle.innerText = "Fun fact:"
+
+    let funFact = document.createElement("p");
+    funFact.classList = "about-planet";
+    funFact.innerText = "Venus spins in the opposite direction of most planets (including Earth) — this is called retrograde rotation.";
+
+    let aboutTitle = document.createElement("h3");
+    aboutTitle.classList = "info-subtitle";
+    aboutTitle.innerText = "About the Venus:"
+    infoPage.appendChild(infoTitle);
+    showPlanet({
+        name: "venus",
+        texturePath: "textures/venus.jpg",
         radius: 5,
         container: infoPage
     });
