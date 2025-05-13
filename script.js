@@ -10,6 +10,7 @@ const venusBtn = document.querySelector(".venusBtn");
 const earthBtn = document.querySelector(".earthBtn");
 const marsBtn = document.querySelector(".marsBtn");
 const jupiterBtn = document.querySelector(".jupiterBtn");
+const saturnBtn = document.querySelector(".saturnBtn")
 
 
 // Planest infos 
@@ -20,6 +21,7 @@ let planetsInfos = [
     "While Earth is only the fifth largest planet in the solar system, it is the only world in our solar system with liquid water on the surface. Just slightly larger than nearby Venus, Earth is the biggest of the four planets closest to the Sun, all of which are made of rock and metal. Earth is the only planet in the solar system whose English name does not come from Greek or Roman mythology. The name was taken from Old English and Germanic. It simply means \"the ground.\" There are, of course, many names for our planet in the thousands of languages spoken by the people of the third planet from the Sun.",
     "Mars is no place for the faint-hearted. It’s dry, rocky, and bitter cold. The fourth planet from the Sun, Mars, is one of Earth's two closest planetary neighbors (Venus is the other). Mars is one of the easiest planets to spot in the night sky — it looks like a bright red point of light.",
     "Jupiter is a world of extremes. It's the largest planet in our solar system – if it were a hollow shell, 1,000 Earths could fit inside. It's also the oldest planet, forming from the dust and gases left over from the Sun's formation 4.6 billion years ago. But it has the shortest day in the solar system, taking about 9.9 hours to spin around once on its axis.",
+    "Saturn is a massive ball made mostly of hydrogen and helium. It's surrounded by a beautiful ring system. It's the farthest planet from Earth discovered by the unaided human eye.",
 
 ];
 
@@ -55,7 +57,7 @@ function showPlanet({ name, texturePath, radius, container, satelite }) {
     const width = 450;
     const height = 100;
 
-   
+
     // -- Scene --
     const scene = new THREE.Scene();
     scene.background = null;
@@ -75,6 +77,22 @@ function showPlanet({ name, texturePath, radius, container, satelite }) {
     const planet = new THREE.Mesh(geo, mat);
     planet.name = name;
     scene.add(planet);
+
+    // -- Ring for Saturn --
+    if (name.toLowerCase() === "saturn") {
+        const ringGeo = new THREE.RingGeometry(radius + 1.5, radius + 3, 64);
+        const ringMat = new THREE.MeshBasicMaterial({
+            map: loader.load("textures/saturn_ring.png"),
+            side: THREE.DoubleSide,
+            transparent: true
+        });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+
+        ring.rotation.x = Math.PI / 2; 
+        planet.add(ring); 
+
+        planet.rotation.z = THREE.MathUtils.degToRad(26.7);
+    }
 
     // -- Satelite --
     if (satelite) {
@@ -162,7 +180,7 @@ sunBtn.addEventListener("click", function () {
     scrollSection.appendChild(about);
     scrollSection.appendChild(funFactTitle);
     scrollSection.appendChild(funFact);
-    
+
     infoPage.appendChild(scrollSection);
     infoPage.appendChild(closeCardBtn);
 
@@ -221,7 +239,7 @@ mercuryBtn.addEventListener("click", function () {
     scrollSection.appendChild(about);
     scrollSection.appendChild(funFactTitle);
     scrollSection.appendChild(funFact);
-    
+
     infoPage.appendChild(scrollSection);
     infoPage.appendChild(closeCardBtn);
 
@@ -280,7 +298,7 @@ venusBtn.addEventListener("click", function () {
     scrollSection.appendChild(about);
     scrollSection.appendChild(funFactTitle);
     scrollSection.appendChild(funFact);
-    
+
     infoPage.appendChild(scrollSection);
     infoPage.appendChild(closeCardBtn);
 
@@ -346,7 +364,7 @@ earthBtn.addEventListener("click", function () {
     scrollSection.appendChild(about);
     scrollSection.appendChild(funFactTitle);
     scrollSection.appendChild(funFact);
-    
+
     infoPage.appendChild(scrollSection);
     infoPage.appendChild(closeCardBtn);
 
@@ -405,7 +423,7 @@ marsBtn.addEventListener("click", function () {
     scrollSection.appendChild(about);
     scrollSection.appendChild(funFactTitle);
     scrollSection.appendChild(funFact);
-    
+
     infoPage.appendChild(scrollSection);
     infoPage.appendChild(closeCardBtn);
 
@@ -417,6 +435,8 @@ marsBtn.addEventListener("click", function () {
     document.body.appendChild(infoPage);
 
 });
+
+// --------- Jupiter ---------
 
 jupiterBtn.addEventListener("click", function () {
     if (document.querySelector(".infoPage")) return;
@@ -462,7 +482,66 @@ jupiterBtn.addEventListener("click", function () {
     scrollSection.appendChild(about);
     scrollSection.appendChild(funFactTitle);
     scrollSection.appendChild(funFact);
-    
+
+    infoPage.appendChild(scrollSection);
+    infoPage.appendChild(closeCardBtn);
+
+    closeCardBtn.addEventListener("click", function () {
+        infoPage.remove();
+    });
+
+
+    document.body.appendChild(infoPage);
+
+});
+
+// --------- Saturn ---------
+
+saturnBtn.addEventListener("click", function () {
+    if (document.querySelector(".infoPage")) return;
+
+    const infoPage = document.createElement("div");
+    infoPage.classList = "infoPage";
+
+    let closeCardBtn = document.createElement("button");
+    closeCardBtn.classList = "close-card";
+    closeCardBtn.innerText = "Close";
+
+    let infoTitle = document.createElement("h2");
+    infoTitle.classList = "info-title";
+    infoTitle.innerText = "Saturn";
+
+    let about = document.createElement("p");
+    about.classList = "about-planet";
+    about.innerText = planetsInfos[6];
+
+    let funFactTitle = document.createElement("h3");
+    funFactTitle.classList = "fun-fact-title";
+    funFactTitle.innerText = "Fun fact:"
+
+    let funFact = document.createElement("p");
+    funFact.classList = "about-planet";
+    funFact.innerText = "Saturn’s rings stretch over 270,000 km (167,000 miles) in diameter.";
+
+    let aboutTitle = document.createElement("h3");
+    aboutTitle.classList = "info-subtitle";
+    aboutTitle.innerText = "About Saturn:"
+    infoPage.appendChild(infoTitle);
+    showPlanet({
+        name: "saturn",
+        texturePath: "textures/saturn.jpg",
+        radius: 5,
+        container: infoPage
+    });
+
+    infoPage.appendChild(aboutTitle);
+    const scrollSection = document.createElement("div");
+    scrollSection.classList = "scroll-section";
+
+    scrollSection.appendChild(about);
+    scrollSection.appendChild(funFactTitle);
+    scrollSection.appendChild(funFact);
+
     infoPage.appendChild(scrollSection);
     infoPage.appendChild(closeCardBtn);
 
