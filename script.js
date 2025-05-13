@@ -93,8 +93,8 @@ function showPlanet({ name, texturePath, radius, container, satelite }) {
         });
         const ring = new THREE.Mesh(ringGeo, ringMat);
 
-        ring.rotation.x = Math.PI / 2; 
-        planet.add(ring); 
+        ring.rotation.x = Math.PI / 2;
+        planet.add(ring);
 
         planet.rotation.z = THREE.MathUtils.degToRad(26.7);
     }
@@ -734,4 +734,19 @@ plutoBtn.addEventListener("click", function () {
 
     document.body.appendChild(infoPage);
 
+    
+});
+
+
+document.addEventListener("click", function (e) {
+    const infoPage = document.querySelector(".infoPage");
+
+    if (
+        infoPage &&
+        !infoPage.contains(e.target) &&
+        !e.target.classList.contains("planet-btn") &&
+        !e.target.classList.contains("close-card")
+    ) {
+        infoPage.remove();
+    }
 });
