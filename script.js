@@ -13,6 +13,7 @@ const jupiterBtn = document.querySelector(".jupiterBtn");
 const saturnBtn = document.querySelector(".saturnBtn");
 const uranusBtn = document.querySelector(".uranusBtn");
 const neptuneBtn = document.querySelector(".neptuneBtn");
+const plutoBtn = document.querySelector(".plutoBtn");
 
 
 // Planest infos 
@@ -26,7 +27,7 @@ let planetsInfos = [
     "Saturn is a massive ball made mostly of hydrogen and helium. It's surrounded by a beautiful ring system. It's the farthest planet from Earth discovered by the unaided human eye.",
     "Uranus is very cold and windy. It is surrounded by faint rings, and more than two dozen small moons. It rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin on its side.",
     "Dark, cold, and whipped by supersonic winds, ice giant Neptune is more than 30 times as far from the Sun as Earth. Neptune is the only planet in our solar system not visible to the naked eye. In 2011 Neptune completed its first 165-year orbit since its discovery in 1846.",
-    
+    "Pluto is a complex and mysterious world with mountains, valleys, plains, craters, and glaciers. It is located in the distant Kuiper Belt. Discovered in 1930, Pluto was long considered our solar system's ninth planet. But after the discovery of similar worlds deeper in the Kuiper Belt, Pluto was reclassified as a dwarf planet in 2006 by the International Astronomical Union. According to the 2006 IAU Resolution, a dwarf planet is an object in orbit around the Sun that is large enough to pull itself into a nearly round shape but has not been able to clear its orbit of debris. The IAU stated that Pluto falls into the dwarf planet category because it is located in a part of our solar system known as the Trans-Neptunian region (beyond Neptune) where other objects might cross Pluto's orbital path.",
 ];
 
 menuBtn.addEventListener("click", function () {
@@ -652,6 +653,65 @@ neptuneBtn.addEventListener("click", function () {
     showPlanet({
         name: "neptune",
         texturePath: "textures/neptune.jpg",
+        radius: 5,
+        container: infoPage
+    });
+
+    infoPage.appendChild(aboutTitle);
+    const scrollSection = document.createElement("div");
+    scrollSection.classList = "scroll-section";
+
+    scrollSection.appendChild(about);
+    scrollSection.appendChild(funFactTitle);
+    scrollSection.appendChild(funFact);
+
+    infoPage.appendChild(scrollSection);
+    infoPage.appendChild(closeCardBtn);
+
+    closeCardBtn.addEventListener("click", function () {
+        infoPage.remove();
+    });
+
+
+    document.body.appendChild(infoPage);
+
+});
+
+// --------- Pluto ---------
+
+plutoBtn.addEventListener("click", function () {
+    if (document.querySelector(".infoPage")) return;
+
+    const infoPage = document.createElement("div");
+    infoPage.classList = "infoPage";
+
+    let closeCardBtn = document.createElement("button");
+    closeCardBtn.classList = "close-card";
+    closeCardBtn.innerText = "Close";
+
+    let infoTitle = document.createElement("h2");
+    infoTitle.classList = "info-title";
+    infoTitle.innerText = "Pluto";
+
+    let about = document.createElement("p");
+    about.classList = "about-planet";
+    about.innerText = planetsInfos[9];
+
+    let funFactTitle = document.createElement("h3");
+    funFactTitle.classList = "fun-fact-title";
+    funFactTitle.innerText = "Fun fact:"
+
+    let funFact = document.createElement("p");
+    funFact.classList = "about-planet";
+    funFact.innerText = "Pluto is only about 1,400 miles wide. At that small size, Pluto is only about half the width of the United States. It's about 3.6 billion miles away from the Sun, and it has a thin atmosphere composed mostly of nitrogen, methane, and carbon monoxide. On average, Pluto’s temperature is -387°F (-232°C), making it too cold to sustain life.";
+
+    let aboutTitle = document.createElement("h3");
+    aboutTitle.classList = "info-subtitle";
+    aboutTitle.innerText = "About Pluto:"
+    infoPage.appendChild(infoTitle);
+    showPlanet({
+        name: "pluto",
+        texturePath: "textures/pluto.jpg",
         radius: 5,
         container: infoPage
     });
