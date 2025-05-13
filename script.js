@@ -10,7 +10,8 @@ const venusBtn = document.querySelector(".venusBtn");
 const earthBtn = document.querySelector(".earthBtn");
 const marsBtn = document.querySelector(".marsBtn");
 const jupiterBtn = document.querySelector(".jupiterBtn");
-const saturnBtn = document.querySelector(".saturnBtn")
+const saturnBtn = document.querySelector(".saturnBtn");
+const uranusBtn = document.querySelector(".uranusBtn");
 
 
 // Planest infos 
@@ -22,7 +23,7 @@ let planetsInfos = [
     "Mars is no place for the faint-hearted. It’s dry, rocky, and bitter cold. The fourth planet from the Sun, Mars, is one of Earth's two closest planetary neighbors (Venus is the other). Mars is one of the easiest planets to spot in the night sky — it looks like a bright red point of light.",
     "Jupiter is a world of extremes. It's the largest planet in our solar system – if it were a hollow shell, 1,000 Earths could fit inside. It's also the oldest planet, forming from the dust and gases left over from the Sun's formation 4.6 billion years ago. But it has the shortest day in the solar system, taking about 9.9 hours to spin around once on its axis.",
     "Saturn is a massive ball made mostly of hydrogen and helium. It's surrounded by a beautiful ring system. It's the farthest planet from Earth discovered by the unaided human eye.",
-
+    "Uranus is very cold and windy. It is surrounded by faint rings, and more than two dozen small moons. It rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin on its side.",
 ];
 
 menuBtn.addEventListener("click", function () {
@@ -530,6 +531,63 @@ saturnBtn.addEventListener("click", function () {
     showPlanet({
         name: "saturn",
         texturePath: "textures/saturn.jpg",
+        radius: 5,
+        container: infoPage
+    });
+
+    infoPage.appendChild(aboutTitle);
+    const scrollSection = document.createElement("div");
+    scrollSection.classList = "scroll-section";
+
+    scrollSection.appendChild(about);
+    scrollSection.appendChild(funFactTitle);
+    scrollSection.appendChild(funFact);
+
+    infoPage.appendChild(scrollSection);
+    infoPage.appendChild(closeCardBtn);
+
+    closeCardBtn.addEventListener("click", function () {
+        infoPage.remove();
+    });
+
+
+    document.body.appendChild(infoPage);
+
+});
+
+uranusBtn.addEventListener("click", function () {
+    if (document.querySelector(".infoPage")) return;
+
+    const infoPage = document.createElement("div");
+    infoPage.classList = "infoPage";
+
+    let closeCardBtn = document.createElement("button");
+    closeCardBtn.classList = "close-card";
+    closeCardBtn.innerText = "Close";
+
+    let infoTitle = document.createElement("h2");
+    infoTitle.classList = "info-title";
+    infoTitle.innerText = "uranus";
+
+    let about = document.createElement("p");
+    about.classList = "about-planet";
+    about.innerText = planetsInfos[8];
+
+    let funFactTitle = document.createElement("h3");
+    funFactTitle.classList = "fun-fact-title";
+    funFactTitle.innerText = "Fun fact:"
+
+    let funFact = document.createElement("p");
+    funFact.classList = "about-planet";
+    funFact.innerText = "Unlike any other planet, Uranus is tilted at about 98 degrees, which means it rotates almost completely sideways.";
+
+    let aboutTitle = document.createElement("h3");
+    aboutTitle.classList = "info-subtitle";
+    aboutTitle.innerText = "About Saturn:"
+    infoPage.appendChild(infoTitle);
+    showPlanet({
+        name: "uranus",
+        texturePath: "textures/uranus.jpg",
         radius: 5,
         container: infoPage
     });
