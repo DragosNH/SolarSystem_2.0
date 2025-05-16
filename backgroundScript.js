@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 // ==============================================================================
 
@@ -22,6 +23,13 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 container.appendChild(renderer.domElement);
+
+// ****** Orbit controls ******
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableZoom = true;
+controls.enableRotate = true;
+controls.enablePan = false;
+
 
 // *** Sun light ***
 const sunLight = new THREE.PointLight(0xffffff, 30, 1000);
@@ -241,6 +249,7 @@ function animate() {
 
 
     renderer.render(scene, camera);
+    controls.update();
     requestAnimationFrame(animate);
 }
 
