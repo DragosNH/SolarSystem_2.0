@@ -1,8 +1,17 @@
 # Solar System 2.0
 
-## Optimised version
+## What changed?
 
-This is going to be the optimised version of the first Solar System Project, in this one I am going to do the stuff a little different than the last time.
+### In order to have an improved version I added an orbit control.
+Now the user can:
+- Zoom.
+- Change the center point.
+- Change the point of view.
+
+### Second imporvement.
+I added a side menu whit a list of all of the planets. By clicking a button, you can get some informations about the planet. 
+
+P.S. Don't expect too much details, this is not an official page after all.
 
 If you want to see the last project, you can find it [here](https://github.com/DragosNH/SolarSystem)
 
